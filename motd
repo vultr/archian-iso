@@ -1,0 +1,16 @@
+For Wi-Fi, authenticate to the wireless network using the iwctl utility.
+Ethernet and Wi-Fi connections using DHCP should work automatically.
+
+If archian.json is in the root folder, it will be used to automate the
+install process. You can also specify it in the cmdline with,
+
+archian_json=http(s)|ftp://address/file
+
+or
+
+archian_json=/file/path
+
+If you need to start the installer, use the following commands.
+
+cd /root
+./install.sh

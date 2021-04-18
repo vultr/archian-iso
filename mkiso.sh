@@ -42,6 +42,15 @@ cp -rf ./archian/* ./archlive/airootfs/root
 cp -f ./automated_script.sh ./archlive/airootfs/root/.automated_script.sh
 chmod +x ./archlive/airootfs/root/.automated_script.sh
 
+# Change hostname
+sed -i -e 's/archiso/archianiso/g' ./archlive/airootfs/etc/hostname
+
+# Set DNS details
+echo "nameserver 8.8.8.8" > ./archlive/airootfs/etc/resolv.conf
+
+# Set motd
+cat motd > ./archlive/airootfs/etc/motd
+
 # Build
 mkarchiso -v -w ./work -o ./output ./archlive
 
