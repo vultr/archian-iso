@@ -35,7 +35,6 @@ cp archian/iso/iso-install.sh archian/install.sh
 chmod + archian/install.sh
 
 # Add Archian
-tree  ./archlive
 cp -rf ./archian/* ./archlive/airootfs/root
 
 # Change .automated_script.sh
@@ -46,6 +45,7 @@ chmod +x ./archlive/airootfs/root/.automated_script.sh
 sed -i -e 's/archiso/archianiso/g' ./archlive/airootfs/etc/hostname
 
 # Set DNS details
+rm ./archlive/airootfs/etc/resolv.conf
 echo "nameserver 8.8.8.8" > ./archlive/airootfs/etc/resolv.conf
 
 # Set motd
