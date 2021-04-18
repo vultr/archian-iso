@@ -53,8 +53,9 @@ rm ./archlive/airootfs/etc/resolv.conf
 echo "nameserver 8.8.8.8" > ./archlive/airootfs/etc/resolv.conf
 
 # Set ISO name
-sed -i -e 's/iso_name=.*/iso_name="archian"/' ./archlive/profiledef.sh
-sed -i -e "s/iso_label=.*/iso_label=\"ARCHIAN_${VERSION}\"/" ./archlive/profiledef.sh
+echo "Setting ISO Data"
+sed -i -e 's/iso_name.*/iso_name="archian"/' ./archlive/profiledef.sh
+sed -i -e "s/iso_label.*/iso_label=\"ARCHIAN_${VERSION}\"/" ./archlive/profiledef.sh
 sed -i -e 's/iso_publisher.*/iso_publisher="Archian <https://github.com/eb3095/archian>"/' ./archlive/profiledef.sh
 sed -i -e 's/iso_application.*/iso_application="Archian Live/Rescue CD"/' ./archlive/profiledef.sh
 sed -i -e "s/iso_version.*/iso_version=\"${VERSION}\"/" ./archlive/profiledef.sh
@@ -63,9 +64,11 @@ sed -i -e "s/iso_version.*/iso_version=\"${VERSION}\"/" ./archlive/profiledef.sh
 cp -f ./spash.png ./archlive/syslinux/spash.png
 
 # Change syslinux title
+echo "Setting Title"
 sed -i -e 's/MENU TITLE Arch Linux/MENU TITLE Archian/' ./archlive/syslinux/archiso_head.cfg
 
 # Change the menus
+echo "Setting Menus"
 sed -i -e 's/Arch Linux install medium/Archian install medium/g' ./archlive/syslinux/*.cfg
 
 # Set motd
