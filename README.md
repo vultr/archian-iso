@@ -11,3 +11,5 @@ install all the prerequesits as well.
 git clone https://github.com/eb3095/archian-iso.git
 chmod +x ./mkiso.sh
 ```
+
+The resulting ISO and checksums will be in ./output
