@@ -2,6 +2,10 @@
 
 VERSION="${1}"
 
+if [ -z "${VERSION}" ]; then
+    VERSION=$(date +%Y%m)
+fi
+
 # Set failures
 set -eo pipefail
 
@@ -32,7 +36,7 @@ rm -f archian/.gitignore
 rm -f archian/web.sh
 rm -f archian/install.sh
 cp archian/iso/iso-install.sh archian/install.sh
-chmod + archian/install.sh
+chmod +x archian/install.sh
 
 # Add Archian
 cp -rf ./archian/ ./archlive/airootfs/root
@@ -48,25 +52,27 @@ sed -i -e 's/archiso/archianiso/g' ./archlive/airootfs/etc/hostname
 rm ./archlive/airootfs/etc/resolv.conf
 echo "nameserver 8.8.8.8" > ./archlive/airootfs/etc/resolv.conf
 
+# Set ISO name
+sed -i -e 's/iso_name=.*/iso_name="archian"/' ./archlive/profiledef.sh
+sed -i -e "s/iso_label=.*/iso_label=\"ARCHIAN_${VERSION}\"/" ./archlive/profiledef.sh
+sed -i -e 's/iso_publisher.*/iso_publisher="Archian <https://github.com/eb3095/archian>"/' ./archlive/profiledef.sh
+sed -i -e 's/iso_application.*/iso_application="Archian Live/Rescue CD"/' ./archlive/profiledef.sh
+sed -i -e "s/iso_version.*/iso_version=\"${VERSION}\"/" ./archlive/profiledef.sh
+
+# Change splash
+cp -f ./spash.png ./archlive/syslinux/spash.png
+
+# Change syslinux title
+sed -i -e 's/MENU TITLE Arch Linux/MENU TITLE Archian/' ./archlive/syslinux/archiso_head.cfg
+
+# Change the menus
+sed -i -e 's/Arch Linux install medium/Archian install medium/g' ./archlive/syslinux/*.cfg
+
 # Set motd
 cat motd > ./archlive/airootfs/etc/motd
 
 # Build
 mkarchiso -v -w ./work -o ./output ./archlive
-
-if [ ! -z "${VERSION}" ]; then
-    # Add version
-    echo "${VERSION}" >> ./output/version
-
-    # Rename
-    mv ./output/*.iso ./output/archian-${VERSION}-x86_64.iso
-else
-    pushd ./output/
-    ORIG_NAME=$(ls *.iso)
-    NAME=$(echo "${ORIG_NAME}" | sed "s/archlinux/archian/")
-    mv "${ORIG_NAME}" "${NAME}"
-    popd
-fi
 
 # Make hashes
 pushd ./output
