@@ -63,3 +63,4 @@ fi
 pushd ./output
 sha256sum *.iso > SHA256_CHECKSUM
 sha512sum *.iso > SHA512_CHECKSUM
+popd
