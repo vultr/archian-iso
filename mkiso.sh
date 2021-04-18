@@ -60,13 +60,19 @@ sed -i -e 's/iso_application.*/iso_application="Archian Live\/Rescue CD"/' ./arc
 sed -i -e "s/iso_version.*/iso_version=\"${VERSION}\"/" ./archlive/profiledef.sh
 
 # Change splash
-cp -f ./splash.png ./archlive/syslinux/spash.png
+cp -f ./splash.png ./archlive/syslinux/splash.png
 
 # Change syslinux title
 sed -i -e 's/MENU TITLE Arch Linux/MENU TITLE Archian/' ./archlive/syslinux/archiso_head.cfg
 
 # Change the menus
 sed -i -e 's/Arch Linux install medium/Archian install medium/g' ./archlive/syslinux/*.cfg
+
+# Fix perms
+LINE_COUNT=$(cat ./archlive/profiledef.sh | wc -l)
+head -n $(((LINE_COUNT - 1))) ./archlive/profiledef.sh > ./archlive/profiledef.sh
+echo '  ["/root/archian/install.sh"]="0:0:755"' >> ./archlive/profiledef.sh
+echo ')' >> ./archlive/profiledef.sh
 
 # Set motd
 cat motd > ./archlive/airootfs/etc/motd
