@@ -10,7 +10,7 @@ CD=`pwd`
 
 # Download reqs
 pacman -Sy --noconfirm
-pacman -S archiso git tree --noconfirm
+pacman -S archiso git --noconfirm
 
 # Make dirs
 mkdir output
