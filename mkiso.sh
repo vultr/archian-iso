@@ -70,9 +70,11 @@ sed -i -e 's/Arch Linux install medium/Archian install medium/g' ./archlive/sysl
 
 # Fix perms
 LINE_COUNT=$(cat ./archlive/profiledef.sh | wc -l)
-head -n $(((LINE_COUNT - 1))) ./archlive/profiledef.sh > ./archlive/profiledef.sh
-echo '  ["/root/archian/install.sh"]="0:0:755"' >> ./archlive/profiledef.sh
-echo ')' >> ./archlive/profiledef.sh
+head -n $(((LINE_COUNT - 1))) ./archlive/profiledef.sh > ./archlive/profiledef.sh.new
+echo '  ["/root/archian/install.sh"]="0:0:755"' >> ./archlive/profiledef.sh.new
+echo ')' >> ./archlive/profiledef.sh.new
+rm -f ./archlive/profiledef.sh
+mv ./archlive/profiledef.sh.new ./archlive/profiledef.sh
 
 # Set motd
 cat motd > ./archlive/airootfs/etc/motd
