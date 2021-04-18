@@ -12,5 +12,5 @@ archian_json=/file/path
 
 If you need to start the installer, use the following commands.
 
-cd /root
+cd /root/archian
 ./install.sh

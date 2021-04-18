@@ -35,7 +35,7 @@ cp archian/iso/iso-install.sh archian/install.sh
 chmod + archian/install.sh
 
 # Add Archian
-cp -rf ./archian/* ./archlive/airootfs/root
+cp -rf ./archian/ ./archlive/airootfs/root
 
 # Change .automated_script.sh
 cp -f ./automated_script.sh ./archlive/airootfs/root/.automated_script.sh

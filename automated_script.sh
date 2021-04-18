@@ -27,6 +27,6 @@ archian_json ()
 
 if [[ $(tty) == "/dev/tty1" ]]; then
     archian_json
-    cd /root/
-    /root/install.sh
+    cd /root/archian
+    /root/archian/install.sh
 fi
