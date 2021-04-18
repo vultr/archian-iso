@@ -74,6 +74,9 @@ cat motd > ./archlive/airootfs/etc/motd
 # Build
 mkarchiso -v -w ./work -o ./output ./archlive
 
+# Add version
+echo "${VERSION}" >> ./output/version
+
 # Make hashes
 pushd ./output
 sha256sum *.iso > SHA256_CHECKSUM
