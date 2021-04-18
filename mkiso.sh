@@ -60,7 +60,7 @@ sed -i -e 's/iso_application.*/iso_application="Archian Live\/Rescue CD"/' ./arc
 sed -i -e "s/iso_version.*/iso_version=\"${VERSION}\"/" ./archlive/profiledef.sh
 
 # Change splash
-cp -f ./spash.png ./archlive/syslinux/spash.png
+cp -f ./splash.png ./archlive/syslinux/spash.png
 
 # Change syslinux title
 sed -i -e 's/MENU TITLE Arch Linux/MENU TITLE Archian/' ./archlive/syslinux/archiso_head.cfg
