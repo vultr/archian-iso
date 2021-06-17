@@ -45,6 +45,9 @@ cp -rf ./archian/ ./archlive/airootfs/root
 cp -f ./automated_script.sh ./archlive/airootfs/root/.automated_script.sh
 chmod +x ./archlive/airootfs/root/.automated_script.sh
 
+# Copy rootfs
+cp -rf rootfs/* ./archlive/airootfs/
+
 # Change hostname
 sed -i -e 's/archiso/archianiso/g' ./archlive/airootfs/etc/hostname
 
