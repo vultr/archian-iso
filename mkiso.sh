@@ -27,6 +27,8 @@ cp -r /usr/share/archiso/configs/releng/ ./archlive
 echo "git" >> ./archlive/packages.x86_64
 echo "dialog" >> ./archlive/packages.x86_64
 echo "jq" >> ./archlive/packages.x86_64
+echo "wget" >> ./archlive/packages.x86_64
+echo "unzip" >> ./archlive/packages.x86_64
 
 # Download Archian
 git clone https://github.com/eb3095/archian.git
