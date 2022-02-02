@@ -86,10 +86,6 @@ mv ./archlive/profiledef.sh.new ./archlive/profiledef.sh
 # Set motd
 cat motd > ./archlive/airootfs/etc/motd
 
-# Increase airrootfs size
-sed -i -e 's/options/options cow_spacesize=512M/g' ./archlive/efiboot/loader/entries/*.conf
-sed -i -e 's/APPEND/APPEND cow_spacesize=512M/g' ./archlive/syslinux/archiso_sys-linux.cfg
-
 # Build
 mkarchiso -v -w ./work -o ./output ./archlive
 
