@@ -14,13 +14,19 @@ archian_json ()
 {
     local json rt
     json="$(archian_json_cmdline)"
-    if [[ -n "${json}" && ! -x /root/archian.json ]]; then
-        if [[ "${json}" =~ ^((http|https|ftp)://) ]]; then
-            curl "${json}" --retry-connrefused -s -o /root/archian.json >/dev/null
-            rt=$?
+    if [[ ! -x /root/archian.json ]]; then
+        if [[ -n "${json}" ]]; then
+            if [[ "${json}" =~ ^((http|https|ftp)://) ]]; then
+                curl "${json}" --retry-connrefused -s -o /root/archian.json >/dev/null
+                rt=$?
+            else
+                cp "${json}" /root/archian.json
+                rt=$?
+            fi
         else
-            cp "${json}" /root/archian.json
-            rt=$?
+           # Try overridable domain path!
+           curl --retry-connrefused -s http://installer.archian.com -o /root/archian.json >/dev/null
+           rt=$?
         fi
     fi
 }
