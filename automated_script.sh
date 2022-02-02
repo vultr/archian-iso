@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+mount -o remount,size=400M /run/archiso/cowspace
+
 archian_json_cmdline ()
 {
     local param
