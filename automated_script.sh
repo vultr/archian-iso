@@ -42,3 +42,6 @@ if ! [ -f /root/archian.json ]; then
     sed -i -e "s/ListenAddress 127.0.0.1//g" /etc/ssh/sshd_config
     systemctl restart sshd
 fi
+
+# Enforce networking for stability
+dhclient
