@@ -38,6 +38,7 @@ if [[ $(tty) == "/dev/tty1" ]]; then
 fi
 
 # Disable ssh to support packer on automated install
-if [ -f /root/archian.json ]; then
-    systemctl stop sshd
+if ! [ -f /root/archian.json ]; then
+    sed -i -e "s/ListenAddress 127.0.0.1//g" /etc/ssh/sshd_config
+    systemctl restart sshd
 fi

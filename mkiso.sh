@@ -58,6 +58,7 @@ sed -i -e 's/archiso/archianiso/g' ./archlive/airootfs/etc/hostname
 # Set DNS details
 rm ./archlive/airootfs/etc/resolv.conf
 echo "nameserver 8.8.8.8" > ./archlive/airootfs/etc/resolv.conf
+echo "ListenAddress 127.0.0.1" >> ./archlive/airootfs/etc/ssh/sshd_config
 
 # Set ISO name
 sed -i -e 's/iso_name.*/iso_name="archian"/' ./archlive/profiledef.sh
