@@ -36,3 +36,8 @@ if [[ $(tty) == "/dev/tty1" ]]; then
     cd /root/archian
     /root/archian/install.sh
 fi
+
+# Disable ssh to support packer on automated install
+if [ -f /root/archian.json ]; then
+    systemctl stop sshd
+fi
