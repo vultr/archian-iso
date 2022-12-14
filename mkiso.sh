@@ -31,7 +31,7 @@ echo "wget" >> ./archlive/packages.x86_64
 echo "unzip" >> ./archlive/packages.x86_64
 
 # Download Archian
-git clone https://github.com/eb3095/archian.git
+git clone https://github.com/vultr/archian.git
 
 # Format Archian
 rm -f archian/.gitignore
